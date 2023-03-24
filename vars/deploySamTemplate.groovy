@@ -3,10 +3,6 @@ def call(Map config) {
         agent {
             docker { image 'amazon/aws-sam-cli-build-image-provided' }
         }
-
-        parameters {
-            string(description: 'Name Lambda Function', name: 'FunctionName')
-        }
         stages {
             stage('Checkout') {
                 steps {
@@ -20,7 +16,7 @@ def call(Map config) {
                 steps {
                     script {
                         def x = new com.devops.samDeploy()
-                        x.samDeploy("$FunctionName")
+                        x.samDeploy()
                     }
                 }
             }
