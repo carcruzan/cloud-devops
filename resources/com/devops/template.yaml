@@ -6,7 +6,7 @@ Parameters:
   Runtime:
     Type: String
   MemorySize:
-    Type: String
+    Type: Number
   Handler:
     Type: String
   CodePath:
