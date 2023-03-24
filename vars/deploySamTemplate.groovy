@@ -16,7 +16,7 @@ def call(Map pipelineParams) {
                 steps {
                     script {
                         def x = new com.devops.samDeploy()
-                        x.samDeploy(pipelineParams.PathCodeLambda)
+                        x.samDeploy()
                     }
                 }
             }
