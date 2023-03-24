@@ -1,6 +1,4 @@
 def call(Map config) {
-    def z = new com.devops.checkout()
-    def x = new com.devops.samDeploy()
     pipeline {
         agent {
             docker { image 'amazon/aws-sam-cli-build-image-provided' }
@@ -8,12 +6,18 @@ def call(Map config) {
         stages {
             stage('Checkout') {
                 steps {
-                    z.checkOut('https://github.com/carcruzan/IaC.git')
+                    script {
+                        def z = new com.devops.checkout()
+                        z.checkOut('https://github.com/carcruzan/IaC.git')
+                    }
                 }
             }
             stage('SAM Deploy'){
                 steps {
-                    x.samDeploy('${config.name}')
+                    script {
+                        def x = new com.devops.samDeploy()
+                        x.samDeploy('${config.name}')
+                    }
                 }
             }
         }
