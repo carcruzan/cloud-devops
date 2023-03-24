@@ -11,6 +11,8 @@ Parameters:
     Type: String
   CodePath:
     Type: String
+  Bucket:
+    Type: String
 Resources:
   LambdaFunction:
     Type: 'AWS::Lambda::Function'
@@ -20,7 +22,9 @@ Resources:
       Role: !GetAtt LambdaFunctionRole.Arn
       MemorySize: !Ref MemorySize
       Handler: !Ref Handler
-      Code: !Ref CodePath
+      Code:
+        S3Bucket: !Ref Bucket
+        S3Key: !Ref CodePath
   LambdaFunctionRole:
     Type: AWS::IAM::Role
     Properties:
