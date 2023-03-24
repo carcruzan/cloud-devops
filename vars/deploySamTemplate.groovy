@@ -18,8 +18,12 @@ def call(Map config) {
                         def x = new com.devops.samDeploy()
                         x.samDeploy()
                     }
-                    cleanWs()
                 }
+            }
+        }
+        post { 
+            always { 
+                cleanWs()
             }
         }
     }

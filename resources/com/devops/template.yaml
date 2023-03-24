@@ -9,7 +9,7 @@ Parameters:
     Type: String
   Handler:
     Type: String
-  CodePath:
+  ZipName:
     Type: String
   Bucket:
     Type: String
@@ -24,7 +24,7 @@ Resources:
       Handler: !Ref Handler
       Code:
         S3Bucket: !Ref Bucket
-        S3Key: !Ref CodePath
+        S3Key: !Ref ZipName
   LambdaFunctionRole:
     Type: AWS::IAM::Role
     Properties:
