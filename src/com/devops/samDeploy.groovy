@@ -12,7 +12,9 @@ def samDeploy(PathCodeLambda) {
         region=$(cat config.json | jq -r '.[] | select(.ParameterKey=="region")| .ParameterValue ')
         stack_name=$(cat config.json | jq -r '.[] | select(.ParameterKey=="stackName") | .ParameterValue ')
 
-        cd $PathCodeLambda
+        cd ${PathCodeLambda}
+
+        ls -la
 
         zip -r $ZipName *
         aws s3 cp $ZipName s3://$Bucket
