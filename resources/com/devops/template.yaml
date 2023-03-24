@@ -10,6 +10,8 @@ Parameters:
     Type: Number
   Handler:
     Type: String
+  CodePath:
+    Type: String
 Resources:
   LambdaFunction:
     Type: 'AWS::Serverless::Function'
@@ -19,7 +21,7 @@ Resources:
       Role: !GetAtt LambdaFunctionRole.Arn
       MemorySize: !Ref MemorySize
       Handler: !Ref Handler
-      CodeUri: .
+      CodeUri: !Ref CodePath
   LambdaFunctionRole:
     Type: AWS::IAM::Role
     Properties:
