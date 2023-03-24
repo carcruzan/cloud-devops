@@ -1,4 +1,4 @@
-def call(Map config) {
+def call(Map pipelineParams) {
     pipeline {
         agent {
             docker { image 'amazon/aws-sam-cli-build-image-provided' }
@@ -16,7 +16,7 @@ def call(Map config) {
                 steps {
                     script {
                         def x = new com.devops.samDeploy()
-                        x.samDeploy()
+                        x.samDeploy(pipelineParams.PathCodeLambda)
                     }
                 }
             }
