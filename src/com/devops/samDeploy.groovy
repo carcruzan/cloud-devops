@@ -2,13 +2,17 @@ package com.devops
 
 def samDeploy() {
     def template = libraryResource 'com/devops/template.yaml'
-    writeFile file: "template.yaml" , text: template
-
-    def config = readJSON file: "config.json"
-
+    writeFile(file: 'template.yaml', text: template)
+    
     sh '''
-        chmod a+x template.yaml
-        SAM_PARAMETERS=$( cat config.json)
-        sam deploy -t template.yaml --stack-name=${config[].ParameterKey == 'stack-name'} --region=us-east-1 --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides $SAM_PARAMETERS
+
+        SAM_PARAMETERS=$( cat config.json | jq -r '.[] | "\\(.ParameterKey)=\\(.ParameterValue)"')
+        
+        region=$(cat config.json | jq -r '.[] | select(.ParameterKey=="region")| .ParameterValue ')
+        
+        stack_name=$(cat config.json | jq -r '.[] | select(.ParameterKey=="stackName") | .ParameterValue ')
+        
+        sam deploy -t template.yaml --stack-name=$stack_name --region=$region --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides $SAM_PARAMETERS
+
     '''
 }
