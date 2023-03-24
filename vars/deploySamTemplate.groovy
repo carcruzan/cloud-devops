@@ -20,7 +20,7 @@ def call(Map config) {
                 steps {
                     script {
                         def x = new com.devops.samDeploy()
-                        x.samDeploy($FunctionName)
+                        x.samDeploy("$FunctionName")
                     }
                 }
             }
