@@ -17,7 +17,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: !Ref FunctionName
-      Runtime: python3.9
+      Runtime: python3.7
       Role: !GetAtt LambdaFunctionRole.Arn
       MemorySize: !Ref MemorySize
       Handler: !Ref Handler
