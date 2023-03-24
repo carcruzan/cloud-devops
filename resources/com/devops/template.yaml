@@ -22,7 +22,6 @@ Resources:
       MemorySize: !Ref MemorySize
       Handler: !Ref Handler
       CodeUri: !Ref CodePath
-      PackageType: Zip
   LambdaFunctionRole:
     Type: AWS::IAM::Role
     Properties:
