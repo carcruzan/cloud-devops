@@ -13,6 +13,12 @@ Parameters:
     Type: String
   Bucket:
     Type: String
+  ClusterName:
+    Type: String
+  TaskDefinition:
+    Type: String
+  ServiceName:
+    Type: String
 Resources:
   LambdaFunction:
     Type: 'AWS::Lambda::Function'
@@ -49,3 +55,11 @@ Resources:
             - logs:CreateLogStream
             - logs:PutLogEvents
             Resource: "*"
+  EcsService:
+    Type: AWS::ECS::Service
+    Properties:
+      ServiceName: !Ref ServiceName
+      Cluster: !Ref ClusterName
+      TaskDefinition: !Ref TaskDefinition
+      DesiredCount: 1
+      LaunchType: EC2
