@@ -8,7 +8,7 @@ def call(Map pipelineParams) {
                 steps {
                     script {
                         def z = new com.devops.checkout()
-                        z.checkOut('https://github.com/carcruzan/IaC.git')
+                        z.checkOut(pipelineParams.scmUrl)
                     }
                 }
             }
