@@ -3,6 +3,9 @@ def call(Map pipelineParams) {
         agent {
             docker { image 'amazon/aws-sam-cli-build-image-provided' }
         }
+        options {
+            skipDefaultCheckout(true)
+        }
         stages {
             stage('Checkout') {
                 steps {
@@ -27,7 +30,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to DEV') {
                 when {
-                    branch 'refs/remotes/origin/develop'
+                    branch 'origin/develop'
                 }
                 steps {
                     script {
