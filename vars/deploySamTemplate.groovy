@@ -30,7 +30,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to DEV') {
                 when {
-                    branch 'origin/develop'
+                    branch 'develop'
                 }
                 steps {
                     script {
