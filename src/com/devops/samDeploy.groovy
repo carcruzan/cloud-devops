@@ -21,7 +21,7 @@ def samDeploy() {
 
         cd ..
 
-        sam deploy -t template.yaml --stack-name=$stack_name --region='''"${DEFAULT_REGION}"''' --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides $SAM_PARAMETERS
+        sam deploy -t template.yaml --stack-name=$stack_name --region="${DEFAULT_REGION}" --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides $SAM_PARAMETERS
 
     '''
 }
