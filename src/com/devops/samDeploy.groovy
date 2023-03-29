@@ -4,10 +4,8 @@ def samDeploy() {
     def template = libraryResource 'com/devops/template.yaml'
     writeFile(file: 'template.yaml', text: template)
 
-    sh '''
-        sed -i 's/${ENVIRONMENT_ID}/"${env.ENVIRONMENT_ID}"/gI' config.json
-        cat config.json
-    '''
+    sh "sed -i 's/${ENVIRONMENT_ID}/${env.ENVIRONMENT_ID}/gI' config.json"
+    sh "cat config.json"
     // sh '''
 
     //     PathCodeLambda=$(cat config.json | jq -r '.properties[] | .PathCodeLambda')
