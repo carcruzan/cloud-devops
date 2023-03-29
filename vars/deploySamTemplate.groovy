@@ -14,7 +14,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to PROD') {
                 when {
-                    branch 'main'
+                    branch 'refs/remotes/origin/main'
                 }
                 steps {
                     script {
