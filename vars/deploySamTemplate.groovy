@@ -27,7 +27,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to DEV') {
                 when {
-                    branch 'develop'
+                    branch 'origin/develop'
                 }
                 steps {
                     script {

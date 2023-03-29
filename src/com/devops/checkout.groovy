@@ -1,7 +1,6 @@
 package com.devops
 
 def checkOut(repo) {
-  // git branch: 'main', url: "${repo}"
   checkout([
       $class: 'GitSCM',
       branches: [[name: 'develop']],
