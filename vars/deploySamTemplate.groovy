@@ -12,7 +12,25 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('SAM Deploy'){
+            stage('Deploy to PROD') {
+                when {
+                    branch 'main'
+                    environment name: 'ENVIRONMENT_ID', value: 'prd'
+                    environment name: 'DEFAULT_REGION', value: 'us-east-1'
+                }
+                steps {
+                    script {
+                        def x = new com.devops.samDeploy()
+                        x.samDeploy()
+                    }
+                }
+            }
+            stage('Deploy to DEV') {
+                when {
+                    branch 'develop'
+                    environment name: 'ENVIRONMENT_ID', value: 'dev'
+                    environment name: 'DEFAULT_REGION', value: 'us-east-1'
+                }
                 steps {
                     script {
                         def x = new com.devops.samDeploy()
@@ -21,8 +39,8 @@ def call(Map pipelineParams) {
                 }
             }
         }
-        post { 
-            always { 
+        post {
+            always {
                 cleanWs()
             }
         }
