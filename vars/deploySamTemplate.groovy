@@ -14,12 +14,12 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to PROD') {
                 when {
-                    branch 'refs/remotes/origin/main'
-                    environment name: 'ENVIRONMENT_ID', value: 'prd'
-                    environment name: 'DEFAULT_REGION', value: 'us-east-1'
+                    branch 'main'
                 }
                 steps {
                     script {
+                        env.ENVIRONMENT_ID = 'prd'
+                        env.DEFAULT_REGION = 'us-east-1'
                         def x = new com.devops.samDeploy()
                         x.samDeploy()
                     }
@@ -28,11 +28,11 @@ def call(Map pipelineParams) {
             stage('Deploy to DEV') {
                 when {
                     branch 'develop'
-                    environment name: 'ENVIRONMENT_ID', value: 'dev'
-                    environment name: 'DEFAULT_REGION', value: 'us-east-1'
                 }
                 steps {
                     script {
+                        env.ENVIRONMENT_ID = 'prd'
+                        env.DEFAULT_REGION = 'us-east-1'
                         def x = new com.devops.samDeploy()
                         x.samDeploy()
                     }
