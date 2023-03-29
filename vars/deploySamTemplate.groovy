@@ -31,7 +31,7 @@ def call(Map pipelineParams) {
                 }
                 steps {
                     script {
-                        env.ENVIRONMENT_ID = 'prd'
+                        env.ENVIRONMENT_ID = 'dev'
                         env.DEFAULT_REGION = 'us-east-1'
                         def x = new com.devops.samDeploy()
                         x.samDeploy()
