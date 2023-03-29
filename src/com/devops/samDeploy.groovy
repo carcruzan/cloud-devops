@@ -5,7 +5,7 @@ def samDeploy() {
     writeFile(file: 'template.yaml', text: template)
 
     sh '''
-        sed -i 's/${ENVIRONMENT_ID}/'''"${env.ENVIRONMENT_ID}"'''/gI' config.json
+        sed -i "s/${ENVIRONMENT_ID}/'''${env.ENVIRONMENT_ID}'''/gI" config.json
         cat config.json
     '''
     // sh '''
