@@ -31,7 +31,8 @@ def call(Map pipelineParams) {
             stage('Deploy to DEV') {
                 when {
                     expression {
-                        return env.GIT_BRANCH == "origin/develop"
+                        echo "BRANCH_NAME is ${env.BRANCH_NAME}"
+                        return env.BRANCH_NAME == "develop"
                     }
                 }
                 steps {
