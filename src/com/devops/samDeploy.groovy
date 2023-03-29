@@ -4,7 +4,7 @@ def samDeploy() {
     def template = libraryResource 'com/devops/template.yaml'
     writeFile(file: 'template.yaml', text: template)
 
-    sh "sed -i 's/${ENVIRONMENT_ID}/${env.ENVIRONMENT_ID}/gI' config.json"
+    sh "sed -i 's/ENVIRONMENT_ID/${ENVIRONMENT_ID}/gI' config.json"
     sh "cat config.json"
     // sh '''
 
