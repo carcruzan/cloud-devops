@@ -14,7 +14,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to PROD') {
                 when {
-                    branch 'main'
+                    branch 'refs/remotes/origin/main'
                     environment name: 'ENVIRONMENT_ID', value: 'prd'
                     environment name: 'DEFAULT_REGION', value: 'us-east-1'
                 }
