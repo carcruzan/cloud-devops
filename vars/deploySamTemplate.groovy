@@ -30,7 +30,9 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to DEV') {
                 when {
-                    branch 'develop'
+                    expression {
+                        return env.GIT_BRANCH == "origin/develop"
+                    }
                 }
                 steps {
                     script {
