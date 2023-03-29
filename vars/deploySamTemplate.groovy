@@ -17,7 +17,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to PROD') {
                 when {
-                    branch 'refs/remotes/origin/main'
+                    branch 'main'
                 }
                 steps {
                     script {
@@ -30,10 +30,7 @@ def call(Map pipelineParams) {
             }
             stage('Deploy to DEV') {
                 when {
-                    expression {
-                        echo "BRANCH_NAME is ${env.BRANCH_NAME}"
-                        return env.BRANCH_NAME == "develop"
-                    }
+                    branch 'develop'
                 }
                 steps {
                     script {
