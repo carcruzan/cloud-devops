@@ -6,7 +6,7 @@ def checkOut(repo) {
       $class: 'GitSCM',
       branches: [[name: 'develop']],
       extensions: scm.extensions + [[$class: 'CleanBeforeCheckout'], [$class: 'WipeWorkspace']],
-      userRemoteConfigs: [[url: '${repo}']],
+      userRemoteConfigs: [[url: "${repo}"]],
       doGenerateSubmoduleConfigurations: false
   ])
 }
